@@ -21,7 +21,7 @@
                 <th>{{ $servico->id }}</th>
                 <td>{{ $servico->nome }}</td>
                 <td>
-                    <a href="{{ route('servicos.edit', $servico) }}" class="btn btn-primary">Atualizar</a>
+                    <a href="{{ route('servicos.edit', $servico) }}" class="btn btn-primary btn-sm">Atualizar</a>
                 </td>
             </tr>
         @empty
@@ -39,6 +39,6 @@
     </div>
 
     <div class="float-right">
-        <a href="{{ route('servicos.create') }}" class="btn btn-success">Novo serviço</a>
+        <a href="{{ route('servicos.create') }}" class="btn btn-success btn-sm">Novo serviço</a>
     </div>
 @stop
