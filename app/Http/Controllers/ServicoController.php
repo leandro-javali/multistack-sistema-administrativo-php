@@ -25,7 +25,7 @@ class ServicoController extends Controller
 
         Servico::create($dados);
 
-        return redirect()->route('servicos.index');
+        return redirect()->route('servicos.index')->with('mensagem','Serviço criado com sucesso!');
     }
 
     public function edit(int $id)

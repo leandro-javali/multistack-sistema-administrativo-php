@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Lista de Serviços')
+@section('title', 'Lista de Usuários')
 
 @section('content_header')
-    <h1>Lista de Serviços</h1>
+    <h1>Lista de Usuários</h1>
 @stop
 
 @section('content')
@@ -22,12 +22,13 @@
         </tr>
     </thead>
     <tbody>
-        @forelse ($servicos as $servico)
+        @forelse ($usuarios as $usuario)
             <tr>
-                <th>{{ $servico->id }}</th>
-                <td>{{ $servico->nome }}</td>
+                <th>{{ $usuario->id }}</th>
+                <td>{{ $usuario->name }}</td>
                 <td>
-                    <a href="{{ route('servicos.edit', $servico) }}" class="btn btn-primary btn-sm">Atualizar</a>
+                    <a href="{{ route('usuarios.edit', $usuario) }}" class="btn btn-primary btn-sm">Atualizar</a>
+                    <a href="{{ route('usuarios.destroy', $usuario) }}" class="btn btn-danger btn-sm">Excluir</a>
                 </td>
             </tr>
         @empty
@@ -41,10 +42,10 @@
     </table>
 
     <div class="d-flex justify-content-center">
-        {{ $servicos->links() }}
+        {{ $usuarios->links() }}
     </div>
 
     <div class="float-right">
-        <a href="{{ route('servicos.create') }}" class="btn btn-success btn-sm">Novo serviço</a>
+        <a href="{{ route('usuarios.create') }}" class="btn btn-success btn-sm">Novo usuário</a>
     </div>
 @stop
