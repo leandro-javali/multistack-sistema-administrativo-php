@@ -23,10 +23,17 @@ class UsuarioRequest extends FormRequest
      */
     public function rules()
     {
+        $emailUnico = 'unique:App\Models\User,email';
+
+        if($this->isMethod('PUT') || $this->isMethod('PATCH'))
+        {
+            $emailUnico = $emailUnico . ',' . $this->route('usuario')->id;
+        }
+
         return [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed']
+            'email' => ['required', 'string', 'email', 'max:255', $emailUnico],
+            'password' => ['required', 'string', 'min:6', 'confirmed']
         ];
     }
 }

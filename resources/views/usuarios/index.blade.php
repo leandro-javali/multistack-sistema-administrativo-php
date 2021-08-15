@@ -7,17 +7,14 @@
 @stop
 
 @section('content')
-    @if (session('mensagem'))
-        <div class="alert alert-sucess">
-            {{ session('mensagem') }}
-        </div>
-    @endif
+    @include('_mensagens_sessao')
 
     <table class="table">
     <thead>
         <tr>
             <th scope="col">Id</th>
             <th scope="col">Nome</th>
+            <th scope="col">Email</th>
             <th scope="col">Ações</th>
         </tr>
     </thead>
@@ -26,9 +23,17 @@
             <tr>
                 <th>{{ $usuario->id }}</th>
                 <td>{{ $usuario->name }}</td>
+                <td>{{ $usuario->email }}</td>
                 <td>
                     <a href="{{ route('usuarios.edit', $usuario) }}" class="btn btn-primary btn-sm">Atualizar</a>
-                    <a href="{{ route('usuarios.destroy', $usuario) }}" class="btn btn-danger btn-sm">Excluir</a>
+                    <form action="{{ route('usuarios.destroy',$usuario) }}" method="post" style="display: inline">
+                        @method('DELETE')
+                        @csrf
+
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Deseja realmente excluir ?')">
+                            Excluir
+                        </button>
+                    </form>
                 </td>
             </tr>
         @empty

@@ -7,6 +7,11 @@ use App\Models\Servico;
 
 class ServicoController extends Controller
 {
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     public function index()
     {
         $servicos = Servico::paginate(10);
@@ -14,11 +19,22 @@ class ServicoController extends Controller
         return view('servicos.index')->with('servicos',$servicos);
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     public function create()
     {
         return view('servicos.create');
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param ServicoRequest $request
+     * @return void
+     */
     public function store(ServicoRequest $request)
     {
         $dados = $request->except('_token');
@@ -28,19 +44,27 @@ class ServicoController extends Controller
         return redirect()->route('servicos.index')->with('mensagem','Serviço criado com sucesso!');
     }
 
-    public function edit(int $id)
+    /**
+     * Undocumented function
+     *
+     * @param Servico $servico
+     * @return void
+     */
+    public function edit(Servico $servico )
     {
-        $servico = Servico::findOrFail($id);
-
         return view('servicos.edit')->with('servico',$servico);
     }
 
-    public function update(int $id, ServicoRequest $request)
+    /**
+     * Undocumented function
+     *
+     * @param Servico $servico
+     * @param ServicoRequest $request
+     * @return void
+     */
+    public function update(Servico $servico, ServicoRequest $request)
     {
         $dados = $request->except(['_token','_method']);
-
-        $servico = Servico::findOrFail($id);
-
         $servico->update($dados);
 
         return redirect()->route('servicos.index');
